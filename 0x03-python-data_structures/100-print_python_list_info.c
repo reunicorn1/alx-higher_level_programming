@@ -1,5 +1,4 @@
 #include <Python.h>
-#include <stdio.h>
 
 void print_python_list_info(PyObject *p)
 {
@@ -18,7 +17,7 @@ void print_python_list_info(PyObject *p)
 		for (i = 0; i < size; i++)
 		{
 			type = Py_TYPE(PyList_GetItem(p, (Py_ssize_t)i));
-			typeName = type->tp_name;
+			typeName = (char*)type->tp_name;
 			printf("Element %d: %s\n", i, typeName);
 		}
 	}
