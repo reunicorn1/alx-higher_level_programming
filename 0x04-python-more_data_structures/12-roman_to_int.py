@@ -7,13 +7,13 @@ def roman_to_int(roman_string):
 
     total = 0
     prev_value = 0
-
-    for char in roman_string:
-        value = roman_dict[char]
-        if value > prev_value:
-            total += value - 2 * prev_value
-        else:
-            total += value
-        prev_value = value
+    if (roman_string) and isinstance(roman_string, str):
+        for char in roman_string:
+            value = roman_dict.get(char)
+            if value > prev_value:
+                total += value - 2 * prev_value
+            else:
+                total += value
+            prev_value = value
 
     return total
