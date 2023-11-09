@@ -1,32 +1,39 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
+
     def roman_thousands(string):
-        count = string.count("M") * 1000
+        count = 0
+        for i in range(len(string)):
+            if string[i] == 'M' and string[i - 1] != 'C':
+                count += 1000
         return count
+
     def roman_hundrads(string):
         count = 0
         for i in range(len(string)):
             if string[i] == 'C' and string[i - 1] != 'X':
                 count += 100
-            elif string[i] == 'D' and string[i - 1] == 'C':
+            elif string[i] == 'D' and string[i - 1] == 'C' and i != 0:
                 count += 300
             elif string[i] == 'D':
                 count += 500
-            elif string[i] == 'M' and string[i - 1] == 'C':
+            elif string[i] == 'M' and string[i - 1] == 'C' and i != 0:
                 count += 800
         return count
+
     def roman_tens(string):
         count = 0
         for i in range(len(string)):
             if string[i] == 'X' and string[i - 1] != 'I':
                 count += 10
-            elif string[i] == 'L' and string[i - 1] == 'X':
+            elif string[i] == 'L' and string[i - 1] == 'X' and i != 0:
                 count += 30
             elif string[i] == 'L':
                 count += 50
-            elif string[i] == 'C' and string[i - 1] == 'X':
+            elif string[i] == 'C' and string[i - 1] == 'X' and i != 0:
                 count += 80
         return count
+
     def roman_ones(string):
         count = 0
         for i in range(len(string)):

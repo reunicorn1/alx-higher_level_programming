@@ -17,3 +17,30 @@ print("{} = {}".format(roman_number, roman_to_int(roman_number)))
 
 roman_number = "DCCVII"
 print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "I"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "IV"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "XL"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "XC"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "C"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "CD"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "CM"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "M"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "MCMXCIV"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
