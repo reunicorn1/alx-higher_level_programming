@@ -1,54 +1,19 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string):
+    roman_dict = {
+        'I': 1, 'V': 5, 'X': 10, 'L': 50,
+        'C': 100, 'D': 500, 'M': 1000
+    }
 
-    def roman_thousands(string):
-        count = 0
-        for i in range(len(string)):
-            if string[i] == 'M' and string[i - 1] != 'C':
-                count += 1000
-        return count
+    total = 0
+    prev_value = 0
 
-    def roman_hundrads(string):
-        count = 0
-        for i in range(len(string)):
-            if string[i] == 'C' and string[i - 1] != 'X':
-                count += 100
-            elif string[i] == 'D' and string[i - 1] == 'C' and i != 0:
-                count += 300
-            elif string[i] == 'D':
-                count += 500
-            elif string[i] == 'M' and string[i - 1] == 'C' and i != 0:
-                count += 800
-        return count
+    for char in roman_string:
+        value = roman_dict[char]
+        if value > prev_value:
+            total += value - 2 * prev_value
+        else:
+            total += value
+        prev_value = value
 
-    def roman_tens(string):
-        count = 0
-        for i in range(len(string)):
-            if string[i] == 'X' and string[i - 1] != 'I':
-                count += 10
-            elif string[i] == 'L' and string[i - 1] == 'X' and i != 0:
-                count += 30
-            elif string[i] == 'L':
-                count += 50
-            elif string[i] == 'C' and string[i - 1] == 'X' and i != 0:
-                count += 80
-        return count
-
-    def roman_ones(string):
-        count = 0
-        for i in range(len(string)):
-            if string[i] == 'I':
-                count += 1
-            elif string[i] == 'V' and string[i - 1] == 'I' and i != 0:
-                count += 3
-            elif string[i] == 'V':
-                count += 5
-            elif string[i] == 'X' and string[i - 1] == 'I' and i != 0:
-                count += 8
-        return count
-    funcs = [roman_thousands, roman_hundrads, roman_tens, roman_ones]
-    add = 0
-    if (roman_string):
-        for f in funcs:
-            add += f(roman_string)
-    return add
+    return total
