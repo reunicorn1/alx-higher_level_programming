@@ -14,6 +14,7 @@ class Square:
     def __init__(self, size=0, position=(0, 0)):
         self.__size = size
         self.position = position
+
     @property
     def size(self):
         """This is the getter method for the attribute size.
@@ -47,7 +48,7 @@ class Square:
 
     @position.setter
     def position(self, position):
-        if position[0] < 0 or position[1] < 0:
+        if not isinstance(position, tuple) or len(position) != 2 or position[0] < 0 or position[1] < 0:
             raise TypeError('position must be a tuple of 2 positive integers')
         else:
             self.__position = position
