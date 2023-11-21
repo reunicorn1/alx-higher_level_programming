@@ -11,6 +11,3 @@ def magic_calculation(a, b):
             result = a + b
             pass
     return result
-
-import dis
-dis.dis(magic_calculation)
