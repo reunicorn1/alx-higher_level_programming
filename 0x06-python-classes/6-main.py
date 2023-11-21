@@ -11,7 +11,12 @@ my_square_2.my_print()
 
 print("--")
 
-my_square_3 = Square(3, (-1, 2))
+try:
+    print(my_square_1.size)
+except Exception as e:
+    print(e)
+
+my_square_3 = Square(3, (3, 0))
 my_square_3.my_print()
 
 print("--")

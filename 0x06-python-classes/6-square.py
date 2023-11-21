@@ -12,9 +12,8 @@ class Square:
        position (tuple): a typle made of 2 positive integers.
     """
     def __init__(self, size=0, position=(0, 0)):
-        self.size = size
+        self.__size = size
         self.position = position
-
     @property
     def size(self):
         """This is the getter method for the attribute size.
