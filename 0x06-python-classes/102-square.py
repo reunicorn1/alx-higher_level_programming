@@ -86,10 +86,11 @@ class Square:
         Returns:
            A boolean value of either True or False
         """
-        result = self.__lt__(other)
-        if result is NotImplemented:
-            return result
-        return not result
+        if isinstance(other, Square):
+            return self.area() > other.area()
+        if isinstance(other, int):
+            return self.area() > other
+        return NotImplemented
 
     def __le__(self, other):
         """This method defines  the behavior for the equality operator <=.
