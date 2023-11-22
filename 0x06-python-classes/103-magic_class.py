@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 import math
-"""This is a module-level docstring. this is used to get pi value"""
+"""This is a module-level docstring. this is used to get pi value
 
-"""This is the MagicClass slass"""
+This is the MagicClass slass which allows you to perform calculations
+to circles.
+"""
 
 
 class MagicClass:
