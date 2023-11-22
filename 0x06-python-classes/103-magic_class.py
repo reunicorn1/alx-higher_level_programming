@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 import math
+"""This is a module-level docstring. this is used to get pi value"""
+
 """This is the MagicClass slass"""
 
 
