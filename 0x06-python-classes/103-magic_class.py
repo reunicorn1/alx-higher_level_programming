@@ -15,7 +15,7 @@ class MagicClass:
     """
     def __init__(self, radius):
         self._MagicClass__radius = 0
-        if type(radius) != int and type(radius) != float:
+        if type(radius) is not int and type(radius) is not float:
             raise TypeError('radius must be a number')
         self._MagicClass__radius = radius
         return None
@@ -35,9 +35,3 @@ class MagicClass:
            The result of the sum of 2 * pi * radius.
         """
         return (2 * math.pi) * self._MagicClass__radius
-
-import dis
-
-dis.dis(MagicClass.__init__)
-dis.dis(MagicClass.area)
-dis.dis(MagicClass.circumference)
