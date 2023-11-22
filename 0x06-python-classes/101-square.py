@@ -74,7 +74,7 @@ class Square:
                 strlist.append(" " * self.__position[0] + "#" * self.__size)
             return '\n'.join(strlist)
         else:
-            return '\n'
+            return ''
 
     def area(self):
         """This method returns the current square area.
