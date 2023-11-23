@@ -11,14 +11,16 @@ void print_python_float(PyObject *p)
 {
 	double value;
 	PyFloatObject *floater;
+	char *str = NULL;
 
 	setbuf(stdout, NULL);
 	printf("[.] float object info\n");
-	if (PyFloat_check(p))
+	if (PyFloat_Check(p))
 	{
 		floater = (PyFloatObject*)(p);
 		value = floater->ob_fval;
-		printf("  value: %lf\n", value);
+		str = PyOS_double_to_string(value, 'r', 0, Py_DTSF_ADD_DOT_0, NULL);
+		printf("  value: %s\n", str);
 	}
 	else
 		printf("  [ERROR] Invalid Float Object\n");
@@ -45,7 +47,7 @@ void print_python_bytes(PyObject *p)
 		return;
 	}
 	s = ((PyBytesObject *)p)->ob_sval;
-	len = ((PyVarObject *)(p))->ob_size
+	len = ((PyVarObject *)(p))->ob_size;
 	printf("  size: %d\n", (int)len);
 	printf("  trying string: %s\n", s);
 	size = (len + 1) < 10 ? (len + 1) : 10;
