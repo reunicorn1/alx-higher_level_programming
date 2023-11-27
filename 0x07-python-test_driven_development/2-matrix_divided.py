@@ -13,6 +13,7 @@ This module suuplies one function, matrix_divided(). For example,
 [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
 """
 
+
 def matrix_check(matrix):
     """Checks the eligibility of the matrix if it meets certain conditions.
 
@@ -28,8 +29,9 @@ def matrix_check(matrix):
         return False
     for element in matrix:
         if not all(isinstance(number, (int, float)) for number in element):
-               return False
+            return False
     return True
+
 
 def matrix_divided(matrix, div):
     """Returns a list of all elements divided by div.
@@ -42,16 +44,17 @@ def matrix_divided(matrix, div):
        A new list of the divided elements of the matrix.
     """
     if not matrix_check(matrix):
-        raise TypeError('matrix must be a matrix (list of lists) of integers/floats')
+        raise TypeError
+    ('matrix must be a matrix (list of lists) of integers/floats')
     if not all(len(element) == len(matrix[0]) for element in matrix):
         raise TypeError('Each row of the matrix must have the same size')
     if not isinstance(div, (int, float)):
         raise TypeError('div must be a number')
     if div == 0:
         raise ZeroDivisionError('division by zero')
-    new_matrix = [[round(number / div, 2) for number in element] for element in matrix]
+    new_matrix = [[round(number / div, 2) for number in element]
+                  for element in matrix]
     return new_matrix
-
 
 
 if __name__ == "__main__":

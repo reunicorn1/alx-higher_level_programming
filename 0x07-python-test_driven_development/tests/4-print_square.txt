@@ -1,0 +1,96 @@
+The '4-print_square' module
+==========================
+
+Using ''print_square''
+--------------------------
+
+
+This is a text file in reStructuredText format. First import
+''print_square'' from the '4-print_square' module.
+
+>>> print_square = __import__('4-print_square').print_square
+
+Now use it:
+
+::Valid Case
+
+>>> print_square(5)
+#####
+#####
+#####
+#####
+#####
+
+
+::Invalid Type Case
+
+>>> print_square("invalid")
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
+
+
+::Negative Size Case
+
+>>> print_square(-3)
+Traceback (most recent call last):
+	...
+ValueError: size must be >= 0
+
+
+::Float Size Case
+
+>>> print_square(2.5)
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
+
+
+::Float Size which is actually a zero
+
+>>> print_square(0.0)
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
+
+
+::Valid Case with Large Size
+
+>>> print_square(10)
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+
+
+::Valid case with size 0
+
+>>> print_square(0)
+
+
+::Valid Case with the smallest positive number
+
+>>> print_square(1)
+#
+
+
+::Invalid type case with a list
+
+>>> print_square([[3]])
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer
+
+
+::Invalid size, None imput
+
+>>> print_square(None)
+Traceback (most recent call last):
+	...
+TypeError: size must be an integer

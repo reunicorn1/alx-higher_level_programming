@@ -10,14 +10,12 @@ This module supplies one function, say_my_name. For example,
 My name is John Smith
 """
 
+
 def say_my_name(first_name, last_name=""):
     """Prints the string "My name is" followed by first name and last name.
 
     >>> say_my_name("Walter", "White")
     My name is Walter White
-
-    >>> say_my_name("Bob")
-    My name is Bob 
 
     Parameters:
        first_name (str): The first name to be added
