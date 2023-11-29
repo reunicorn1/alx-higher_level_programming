@@ -8,6 +8,7 @@ on an N=N chessboard.
 
 import sys
 
+
 class nqueenBoard:
     """This class  provides the object board with N queens setted
     in default positions.
@@ -27,27 +28,15 @@ class nqueenBoard:
        queens.
 
     """
-
     def __init__(self, N):
-        self.__size = N
-        self.queen = [[_, -1] for _ in range(self.__size)]
-
-    @property
-    def size(self):
-        """There's a getter and setter functions to check the value of
-        size to make sure it's an int and above 4.
-        """
-        return self.__size
-
-    @size.setter
-    def size(self, value):
-        if not isinstance(value, int):
+        if not N.isdigit():
             print("N must be a number")
             sys.exit(1)
-        if value < 4:
+        if int(N) < 4:
             print("N must be at least 4")
             sys.exit(1)
-            self.__size = value
+        self.__size = int(N)
+        self.queen = [[_, -1] for _ in range(self.__size)]
 
     def is_safe(self, index):
         """This method checks if a queen in a certain index is in a
@@ -79,15 +68,14 @@ class nqueenBoard:
             for i in range(self.queen[index][1] + 1, self.__size):
                 self.queen[index][1] += 1
                 if self.is_safe(index):
-                    return(self.nqueen_setter(index + 1))
+                    return (self.nqueen_setter(index + 1))
             if index > 0:
                 self.queen[index][1] = -1
-                return(self.nqueen_setter(index - 1))
+                return (self.nqueen_setter(index - 1))
             else:
-                return False
+                return None
         else:
-            print(self.queen)
-            return True
+            return self.queen
 
     def defaut(self):
         """This function returns the queens to the default positions
@@ -101,8 +89,11 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: nqueens N")
         sys.exit(1)
-    board = nqueenBoard(int(sys.argv[1]))
-    while (board.nqueen_setter(0)):
+    board = nqueenBoard(sys.argv[1])
+    alist = board.nqueen_setter(0)
+    while (alist):
+        print(alist)
         save_row = board.queen[0][1]
         board.defaut()
         board.queen[0][1] = save_row
+        alist = board.nqueen_setter(0)
