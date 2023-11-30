@@ -58,6 +58,16 @@ Traceback (most recent call last):
 ValueError: m_a can't be empty
 
 
+::Invalid casw when b is empty
+
+>>> a = [[1, 2, 3], [4, 5, 6]]
+>>> b = [[]]
+>>> matrix_mul(a, b)
+Traceback (most recent call last):
+	...
+ValueError: m_b can't be empty
+
+	
 ::Invalid case with a not having all integers or floats
 
 >>> a = [[1, 2, 3], [4, 5, 6]]
