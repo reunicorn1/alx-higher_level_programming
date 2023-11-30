@@ -17,9 +17,9 @@ def matrix_validation(m_a, m_b):
         raise TypeError('m_a must be a list')
     elif not isinstance(m_b, list):
         raise TypeError('m_b must be a list')
-    elif not m_a or len(m_a) < 1:
+    elif not m_a or any(not elem for elem in m_a):
         raise ValueError("m_a can't be empty")
-    elif not m_b or len(m_b) < 1:
+    elif not m_b or any(not elem for elem in m_b):
         raise ValueError("m_b can't be empty")
     elif not all(isinstance(elem, list) for elem in m_a):
         raise TypeError('m_a must be a list of lists')

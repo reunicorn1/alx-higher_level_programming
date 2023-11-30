@@ -68,6 +68,16 @@ Traceback (most recent call last):
 TypeError: m_b should contain only integers or floats
 
 
+::Invalid casw where a rows are not of same size
+
+>>> a = [[7, 8], [9, 10, 11], [12, 13]]
+>>> b = [[1, 2, 3], [4, 5, 6]]
+>>> matrix_mul(a, b)
+Traceback (most recent call last):
+	...
+TypeError: each row of m_a must be of the same size
+
+
 ::Invalid case where b rows are not of same size
 
 >>> a = [[1, 2, 3], [4, 5, 6]]
@@ -102,3 +112,47 @@ ValueError: m_a and m_b can't be multiplied
 >>> b = [[5.0, 3.3], [-2.9, 4.4], [7.2, 4.4]]
 >>> matrix_mul(a, b)
 [[34.69, 55.44000000000001], [-78.61, 29.018000000000008]]
+
+
+::Invalid case with a as list of integers:
+
+>>> a = [1, 2, 3, 4]
+>>> b = [[5, 6], [7, 8], [9, 10]]
+>>> matrix_mul(a, b)
+Traceback (most recent call last):
+	...
+TypeError: m_a must be a list of lists
+
+
+::Invalid case with b as a list of integers
+
+>>> a = [[5, 6], [7, 8], [9, 10]]
+>>> b = [1, 2, 3, 4]
+>>> matrix_mul(a, b)
+Traceback (most recent call last):
+	...
+TypeError: m_b must be a list of lists
+
+
+::Invalid case with a is a list of lists of not numbers
+
+>>> a = [["this"], ["is"], ["word"]]
+>>> b = [[5, 6], [7, 8], [9, 10]]
+>>> matrix_mul(a, b)
+Traceback (most recent call last):
+	...
+TypeError: m_a should contain only integers or floats
+
+
+::Invalid casw with zero argumenta:
+>>> matrix_mul()
+Traceback (most recent call last):
+	...
+TypeError: matrix_mul() missing 2 required positional arguments: 'm_a' and 'm_b'
+
+
+::Invalid casw with one argument
+>>> matrix_mul([[5, 6], [7, 8], [9, 10]])
+Traceback (most recent call last):
+	...
+TypeError: matrix_mul() missing 1 required positional argument: 'm_b'
