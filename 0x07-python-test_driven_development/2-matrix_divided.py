@@ -43,15 +43,17 @@ def matrix_divided(matrix, div):
     Returns:
        A new list of the divided elements of the matrix.
     """
+    err = "matrix must be a matrix (list of lists) of integers/floats"
     if not matrix_check(matrix):
-        raise TypeError
-    ('matrix must be a matrix (list of lists) of integers/floats')
+        raise TypeError(err)
     if not all(len(element) == len(matrix[0]) for element in matrix):
         raise TypeError('Each row of the matrix must have the same size')
     if not isinstance(div, (int, float)):
         raise TypeError('div must be a number')
     if div == 0:
         raise ZeroDivisionError('division by zero')
+    if div == float('inf') or div == -float('inf') or div != div:
+        div = 10
     new_matrix = [[round(number / div, 2) for number in element]
                   for element in matrix]
     return new_matrix
