@@ -13,6 +13,10 @@ class TestMaxInteger(unittest.TestCase):
         test_list = [2, 8, 5, 10, 1]
         self.assertEqual(max_integer(test_list), 10)
 
+    def test_max_first(self):
+        """This function tests a regular list with max at the beginning"""
+        test_list = [12, 8, 5, 9, 1]
+        self.assertEqual(max_integer(test_list), 12)
     def test_negative_list(self):
         """This function tests a list containing negative numbers"""
         test_list = [-5, -9, -3, -1, -7]
