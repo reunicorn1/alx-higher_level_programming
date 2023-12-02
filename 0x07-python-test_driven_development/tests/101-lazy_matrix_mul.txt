@@ -86,7 +86,7 @@ TypeError: invalid data type for einsum
 >>> print(lazy_matrix_mul(a, b))
 Traceback (most recent call last):
 	...
-ValueError: setting an array element with a sequence.
+ValueError: setting an array element with a sequence
 
 
 ::Invalid case where b rows are not of same size
@@ -96,7 +96,7 @@ ValueError: setting an array element with a sequence.
 >>> print(lazy_matrix_mul(a, b))
 Traceback (most recent call last):
 	...
-ValueError: setting an array element with a sequence.
+ValueError: setting an array element with a sequence
 
 
 ::Invalid case: matrices cannot be multiplied
