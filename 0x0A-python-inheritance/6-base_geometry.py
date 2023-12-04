@@ -2,7 +2,7 @@
 
 
 """
-This is module ''5-base_geometry'' provides one class, BaseGeometry.
+This is module ''6-base_geometry'' provides one class, BaseGeometry.
 """
 
 
