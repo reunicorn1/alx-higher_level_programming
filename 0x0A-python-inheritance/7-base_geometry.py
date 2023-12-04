@@ -33,8 +33,21 @@ class BaseGeometry:
            name: this is always a string
            value: this should always be an integer
 
+        >>> bg = BaseGeometry()
+        >>> bg.integer_validator("my_int", 12)
+        >>> bg.integer_validator("width", 89)
+        >>> bg.integer_validator("name", "John")
+        Traceback (most recent call last):
+            ...
+        TypeError: <name> must be an integer
+
         """
         if type(value) is not int:
             raise TypeError('<name> must be an integer')
         if value < 1:
             raise ValueError('<name> must be greater than 0')
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
