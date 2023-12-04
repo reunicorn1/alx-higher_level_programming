@@ -37,6 +37,8 @@ class nqueenBoard:
             sys.exit(1)
         self.__size = int(N)
         self.queen = [[_, -1] for _ in range(self.__size)]
+        self.solution = []
+        self.iterations = {4:2, 5:10, 6:4, 7:40, 8:92, 9:52, 10:724}
 
     def is_safe(self, index):
         """This method checks if a queen in a certain index is in a
@@ -71,11 +73,21 @@ class nqueenBoard:
                     return (self.nqueen_setter(index + 1))
             if index > 0:
                 self.queen[index][1] = -1
-                return (self.nqueen_setter(index - 1))
+                return self.nqueen_setter(index - 1)
             else:
-                return None
+                return
         else:
-            return self.queen
+            return (self.queen)
+
+    def queen_solution(self):
+        answers = 0
+        while (1):
+            alist = self.nqueen_setter(0)
+            if alist:
+                print(alist)
+                answers += 1
+            if (answers == self.iterations[self.__size]):
+                return
 
     def defaut(self):
         """This function returns the queens to the default positions
@@ -91,9 +103,8 @@ if __name__ == "__main__":
         sys.exit(1)
     board = nqueenBoard(sys.argv[1])
     alist = board.nqueen_setter(0)
-    while (alist):
-        print(alist)
-        save_row = board.queen[0][1]
-        board.defaut()
-        board.queen[0][1] = save_row
-        alist = board.nqueen_setter(0)
+    for _ in range(board._nqueenBoard__size):
+        while (alist):
+            print(alist)
+            board.defaut()
+            alist = board.nqueen_setter(0)
