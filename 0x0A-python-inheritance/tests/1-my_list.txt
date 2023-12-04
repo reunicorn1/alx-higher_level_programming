@@ -1,0 +1,94 @@
+The '1-my_list' module
+==========================
+
+Using ''MyList''
+--------------------------
+
+
+This is a text file in reStructuredText format. First import 
+'MyList' from the '1-my_list' module.
+
+>>> MyList = __import__('1-my_list').MyList
+
+:: Test arguments for the MyList class
+
+>>> test_case1 = MyList([5, 2, 8, 1, 3])
+>>> test_case2 = MyList([10, 7, 2, 4, 9])
+>>> test_case3 = MyList([1, 1, 1, 1, 1])
+>>> test_case4 = MyList([3, 6, 9, 12, 15])
+>>> test_case5 = MyList([8, 4, 2, 6, 10])
+
+>>> test_case1.print_sorted()
+[1, 2, 3, 5, 8]
+
+>>> test_case2.print_sorted()
+[2, 4, 7, 9, 10]
+
+>>> test_case3.print_sorted()
+[1, 1, 1, 1, 1]
+
+>>> test_case4.print_sorted()
+[3, 6, 9, 12, 15]
+
+>>> test_case5.print_sorted()
+[2, 4, 6, 8, 10]
+
+
+:: Empty List
+
+>>> test_case_empty = MyList([])
+>>> test_case_empty.print_sorted()
+[]
+
+:: List with a Single Element
+
+>>> test_case_single_element = MyList([42])
+>>> test_case_single_element.print_sorted()
+[42]
+
+
+:: Descending Order
+
+>>> test_case_descending = MyList([10, 8, 6, 4, 2])
+>>> test_case_descending.print_sorted()
+[2, 4, 6, 8, 10]
+
+
+:: Duplicate Elements
+
+>>> test_case_duplicates = MyList([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5])
+>>> test_case_duplicates.print_sorted()
+[1, 1, 2, 3, 3, 4, 5, 5, 5, 6, 9]
+
+
+:: Large List:
+
+>>> test_case_large_list = MyList(list(range(10**2, 0, -1)))
+>>> test_case_large_list.print_sorted() # doctest: +ELLIPSIS
+[1, 2, 3, ..., 100]
+
+
+
+:: Mix of Positive and Negative Numbers
+
+>>> test_case_mixed = MyList([7, -3, 0, 5, -1, 9, -2])
+>>> test_case_mixed.print_sorted()
+[-3, -2, -1, 0, 5, 7, 9]
+
+
+:: NaN Numbers
+
+>>> test_case_nan_inf = MyList([float('nan'), 6, 2, 8, 1])
+>>> test_case_nan_inf.print_sorted()
+Traceback (most recent call last):
+	...
+ValueError: cannot convert float NaN to integer
+
+
+:: Inf Numbers
+
+>>> test_case_nan_inf = MyList([float('inf'), 6, 2, 8, 1])
+>>> test_case_nan_inf.print_sorted()
+Traceback (most recent call last):
+	...
+OverflowError: cannot convert float infinity to integer
