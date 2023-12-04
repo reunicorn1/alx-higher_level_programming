@@ -20,9 +20,9 @@ class BaseGeometry:
            TypeError
            Value Error
         """
-        if type(value) is not int:
+        if not value or type(value) is not int:
             raise TypeError('{} must be an integer'.format(name))
-        if value < 1:
+        if not value > 0:
             raise ValueError('{} must be greater than 0'.format(name))
 
 
