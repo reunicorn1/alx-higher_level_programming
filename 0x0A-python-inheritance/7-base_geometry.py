@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-
-
-"""
-This is module ''7-base_geometry'' provides one class, BaseGeometry.
-"""
+"""This is module ''7-base_geometry'' provides one class, BaseGeometry."""
 
 
 class BaseGeometry:
