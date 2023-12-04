@@ -25,7 +25,7 @@ class BaseGeometry:
         if value < 1:
             raise ValueError('{} must be greater than 0'.format(name))
 
-    
+
 class Rectangle(BaseGeometry):
     """This class is for Rectangles
 
@@ -41,4 +41,3 @@ class Rectangle(BaseGeometry):
         super().integer_validator("height", height)
         self.__width = width
         self.__height = height
-
