@@ -48,13 +48,8 @@ class Student:
 
     def to_json(self, attrs=None):
         """This function returns a dictionary of the object"""
-        dictionary = {}
-        note = class_to_json(self)
+        dictionary = class_to_json(self)
         if attrs:
-            for attr in attrs:
-                try:
-                    dictionary[attr] = note[attr]
-                except KeyError:
-                    pass
-            return dictionary
-        return note
+            return {attr: dictionary[attr] for attr in attrs if attr
+                    in dictionary}
+        return dictionary
