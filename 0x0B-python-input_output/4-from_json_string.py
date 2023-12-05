@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This is method '4-from_json_string', supplying one function ''from_json_string''
+This is method '4-from_json_string', supplying one function
+''from_json_string''
 """
 import json
 
