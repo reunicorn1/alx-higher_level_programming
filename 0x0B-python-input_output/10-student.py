@@ -56,5 +56,5 @@ class Student:
                     dictionary[attr] = note[attr]
                 except KeyError:
                     pass
-            return dictionary 
+            return dictionary
         return note
