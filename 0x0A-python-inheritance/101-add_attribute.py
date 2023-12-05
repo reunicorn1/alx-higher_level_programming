@@ -13,7 +13,9 @@ def add_attribute(obj, attribute, value):
     Raises:
        TypeError: If the attribute cannot be added to the object.
     """
-    try:
-        setattr(obj, attribute, value)
-    except AttributeError:
+    setattr(obj, attribute, value)
+    if hasattr(obj, '__setattr__') and callable(obj,type(obj). __setattr__)
         raise TypeError("can't add new attribute")
+    if (hasattr(obj, '__slots__')
+        raise TypeError("can't add new attribute")
+    setattr(obj, attribute, class)
