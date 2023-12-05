@@ -5,13 +5,15 @@
 def add_attribute(obj, attribute, value):
     """This function adds a new attribute to an object if possible.
 
-    Arguments:
+    Args:
        obj (obj): an object to add attributes into.
        attribute (string): the attribute to be added
        value: the value of the attribute to be assigned
 
+    Raises:
+       TypeError: If the attribute cannot be added to the object.
     """
     try:
-        setattr(obj, attribute,  value)
-    except Exception as e:
+        setattr(obj, attribute, value)
+    except AttributeError:
         raise TypeError("can't add new attribute")
