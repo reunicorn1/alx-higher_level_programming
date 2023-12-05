@@ -10,7 +10,6 @@ class MyInt(int):
     """
     pass
 
-
     def __eq__(self, other):
         """This function reverses the functinality of ==.
 
