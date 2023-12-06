@@ -52,6 +52,7 @@ class Student:
                                                  is str for attr in attrs):
             return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
+
     def reload_from_json(self, json):
         for key, value in json.items():
             if hasattr(self, key):
