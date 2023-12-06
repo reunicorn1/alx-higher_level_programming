@@ -45,5 +45,7 @@ try:
         n += 1
         if (n % 10 == 0):
             flush()
-except KeyboardInterrupt:
     flush()
+except KeyboardInterrupt as e:
+    flush()
+    raise e
