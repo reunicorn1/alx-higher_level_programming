@@ -48,7 +48,6 @@ class Student:
 
     def to_json(self, attrs=None):
         """This function returns a dictionary of the object"""
-        if attrs and type(attrs) is list and all(type(attr)
-                                                 is str for attr in attrs):
+        if type(attrs) is list:
             return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
