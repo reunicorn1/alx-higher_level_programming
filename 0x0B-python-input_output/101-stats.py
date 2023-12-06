@@ -36,14 +36,29 @@ def flush():
         else:
             print("{}: {}".format(key, code[key]))
 
+def validate_line(line):
+    if len(line) != 9:
+        return False
+    IP_address = list(map(lambda x: int(x), line[0].split('.')))
+    if not all(num < 256 and num > 0 for num in IP_address):
+        return False
+    if line[1] != "-" and line[4] != '"GET' and line[5] != "/projects/260":
+        return False
+    if line[6] != 'HTTP/1.1"':
+        return False
+    if int(line[7]) not in [200, 301, 400, 401, 403, 404, 405, 500]:
+        return False
+    if not (int(line[8]) < 1025 and int(line[8]) > 0):
+        return False
+    return True
 
 n = 0
 try:
     for line in sys.stdin:
         size, status_code = line.split()[-1], line.split()[-2]
-        if len(line.split()) == 9:
+        if validate_line(line.split()):
             log(status_code, size)
-        n += 1
+            n += 1
         if (n % 10 == 0):
             flush()
     flush()
