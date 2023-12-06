@@ -41,7 +41,8 @@ n = 0
 try:
     for line in sys.stdin:
         size, status_code = line.split()[-1], line.split()[-2]
-        log(status_code, size)
+        if len(line.split()) == 9:
+            log(status_code, size)
         n += 1
         if (n % 10 == 0):
             flush()
