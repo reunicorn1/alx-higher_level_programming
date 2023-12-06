@@ -36,6 +36,7 @@ def flush():
         else:
             print("{}: {}".format(key, code[key]))
 
+
 def validate_line(line):
     if len(line) != 9:
         return False
@@ -52,6 +53,7 @@ def validate_line(line):
         return False
     return True
 
+
 n = 0
 try:
     for line in sys.stdin:
@@ -59,8 +61,8 @@ try:
         if validate_line(line.split()):
             log(status_code, size)
             n += 1
-        if (n % 10 == 0):
-            flush()
+            if (n % 10 == 0):
+                flush()
     flush()
 except KeyboardInterrupt as e:
     flush()
