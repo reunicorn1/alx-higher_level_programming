@@ -69,3 +69,17 @@ class Base:
         filename = "{}.json".format(cls.__name__)
         with open(filename, "w", encoding="utf-8") as f:
             f.write(saved)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """This method creates a new instance with all attributes already set
+
+        Args:
+           dictionary (dict): a dictionary of all attributes to be setted
+
+        Returns:
+           (obj): a new instance of attributes
+        """
+        s = cls(1, 1)
+        s.update(**dictionary)
+        return s

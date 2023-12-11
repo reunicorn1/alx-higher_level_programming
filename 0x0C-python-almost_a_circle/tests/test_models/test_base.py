@@ -224,6 +224,34 @@ class Test_from_json_string(unittest.TestCase):
         with self.assertRaises(TypeError):
             Rectangle.to_json_string([], 1)
 
+class Test_create(unittest.TestCase):
+    """unittests for the class method create of the class Base"""
+    def test_create_1(self):
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual(str(r2), str(r1))
+
+    def test_create_1_1(self):
+        r1 = Rectangle(3, 5, 1)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertIsNot(r1, r2)
+        self.assertNotEqual(r1, r2)
+
+    def test_create_2(self):
+        s1 = Square(7, 2, 1)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        self.assertEqual(str(s2), str(s1))
+
+    def test_create_2_1(self):
+        s1 = Square(7, 2, 1)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square.create(**s1_dictionary)
+        self.assertIsNot(s1, s2)
+        self.assertNotEqual(s1, s2)
+
 
 if __name__ == '__main__':
     unittest.main()
