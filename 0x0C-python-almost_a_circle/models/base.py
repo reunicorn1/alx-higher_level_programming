@@ -102,4 +102,3 @@ class Base:
         for item in contents:
             a_list.append(cls.create(**item))
         return a_list
-
