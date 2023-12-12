@@ -3,6 +3,7 @@
 This module is 'models.base' supplying one class ''Base''
 """
 import json
+import os
 
 
 class Base:
@@ -83,3 +84,22 @@ class Base:
         s = cls(1, 1)
         s.update(**dictionary)
         return s
+
+    @classmethod
+    def load_from_file(cls):
+        """This method returns a list of instances from a file based on
+        the class.
+
+        Returns:
+           (list) of instances
+        """
+        a_list = []
+        filename = "{}.json".format(cls.__name__)
+        if not os.path.exists(filename):
+            return []
+        with open(filename, encoding="utf-8") as f:
+            contents = cls.from_json_string(f.read())
+        for item in contents:
+            a_list.append(cls.create(**item))
+        return a_list
+

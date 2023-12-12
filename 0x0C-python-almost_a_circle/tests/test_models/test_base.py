@@ -252,6 +252,58 @@ class Test_create(unittest.TestCase):
         self.assertIsNot(s1, s2)
         self.assertNotEqual(s1, s2)
 
+class Test_load_from_file(unittest.TestCase):
+    """unittests for the function load_from_file of Base class"""
+    @classmethod
+    def tearDown(self):
+        """Delete any created files"""
+        try:
+            os.remove("Rectangle.json")
+        except IOError:
+            pass
+        try:
+            os.remove("Square.json")
+        except IOError:
+            pass
+
+    def test_load_1(self):
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        r2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file([r1, r2])
+        output = Rectangle.load_from_file()
+        self.assertEqual(str(r1), str(output[0]))
+        self.assertEqual(str(r2), str(output[1]))
+
+    def test_load_2(self):
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        r2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file([r1, r2])
+        output = Rectangle.load_from_file()
+        self.assertTrue(all(isinstance(item, Rectangle) for item in output))
+
+    def test_load_3(self):
+        s1 = Square(10, 7, 2, 8)
+        s2 = Square(8, 1, 2, 3)
+        Square.save_to_file([s1, s2])
+        output = Square.load_from_file()
+        self.assertEqual(str(s1), str(output[0]))
+        self.assertEqual(str(s2), str(output[1]))
+
+    def test_load_4(self):
+        s1 = Square(10, 7, 2, 8)
+        s2 = Square(8, 1, 2, 3)
+        Square.save_to_file([s1, s2])
+        output = Square.load_from_file()
+        self.assertTrue(all(isinstance(item, Square) for item in output))
+
+    def test_load_5(self):
+        s = Square(9, 2, 39, 2)
+        output = Square.load_from_file()
+        self.assertListEqual([], output)
+
+    def test_load_6(self):
+         with self.assertRaises(TypeError):
+             Square.load_from_file(1)
 
 if __name__ == '__main__':
     unittest.main()
