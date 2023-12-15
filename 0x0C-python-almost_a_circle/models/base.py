@@ -4,7 +4,7 @@ This module is 'models.base' supplying one class ''Base''
 """
 import json
 import os
-
+import csv
 
 class Base:
     """This class will be the base of all other classes.
@@ -72,6 +72,29 @@ class Base:
             f.write(saved)
 
     @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """This method writes the JSON string representation of a list
+        to a csv file.
+
+        Args:
+           list_objs (list): a list of instances who inherits of Base
+        """
+        saved = []
+        names_rectangle = ["id", "width", "height", "x", "y"]
+        names_square = ["id", "size", "x", "y"]
+        if list_objs:
+            for obj in list_objs:
+                saved.append(obj.to_dictionary())
+        filename = "{}.csv".format(cls.__name__)
+        fieldnames = names_square if cls.__name__ == "Square" else \
+                names_rectangle
+        with open(filename, "w", newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            for row in saved:
+                writer.writerow(row)
+
+    @classmethod
     def create(cls, **dictionary):
         """This method creates a new instance with all attributes already set
 
@@ -101,4 +124,24 @@ class Base:
             contents = cls.from_json_string(f.read())
         for item in contents:
             a_list.append(cls.create(**item))
+        return a_list
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """This method returns a list of instances from a file based on
+        the class.
+
+        Returns:
+           (list) of instances
+        """
+        a_list = []
+        filename = "{}.csv".format(cls.__name__)
+        if not os.path.exists(filename):
+            return []
+        with open(filename, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                row = {key: int(row[key]) for key in row}
+                obj = cls.create(**row)
+                a_list.append(obj)
         return a_list

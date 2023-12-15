@@ -305,5 +305,136 @@ class Test_load_from_file(unittest.TestCase):
          with self.assertRaises(TypeError):
              Square.load_from_file(1)
 
+class Test_Save_To_File_csv(unittest.TestCase):
+    """Unittests for the function save_to_file_csv in class Base"""
+    @classmethod
+    def tearDown(self):
+        """Delete any created files"""
+        try:
+            os.remove("Rectangle.csv")
+        except IOError:
+            pass
+        try:
+            os.remove("Square.csv")
+        except IOError:
+            pass
+        try:
+            os.remove("Base.csv")
+        except IOError:
+            pass
+
+    def test_to_file_1(self):
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        Rectangle.save_to_file_csv([r1])
+        with open("Rectangle.csv", "r") as f:
+            f.readline()
+            self.assertEqual("5,10,7,2,8\n", f.read())
+
+    def test_to_file_2(self):
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        r2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file_csv([r1, r2])
+        with open("Rectangle.csv", "r") as f:
+            f.readline()
+            self.assertEqual("5,10,7,2,8\n3,2,4,1,2\n", f.read())
+
+    def test_to_file_3(self):
+        s = Square(10, 7, 2, 8)
+        Square.save_to_file_csv([s])
+        with open("Square.csv", "r") as f:
+            f.readline()
+            self.assertEqual("8,10,7,2\n", f.read())
+
+    def test_to_file_4(self):
+        s1 = Square(10, 7, 2, 8)
+        s2 = Square(8, 1, 2, 3)
+        Square.save_to_file_csv([s1, s2])
+        with open("Square.csv", "r") as f:
+            f.readline()
+            self.assertEqual("8,10,7,2\n3,8,1,2\n", f.read())
+
+    def test_to_file_6(self):
+        s = Square(9, 2, 39, 2)
+        Square.save_to_file_csv([s])
+        s = Square(10, 7, 2, 8)
+        Square.save_to_file_csv([s])
+        with open("Square.csv", "r") as f:
+            f.readline()
+            self.assertEqual("8,10,7,2\n", f.read())
+
+    def test_to_file_7(self):
+        Square.save_to_file_csv(None)
+        with open("Square.csv", "r") as f:
+            f.readline()
+            self.assertEqual('', f.read())
+
+    def test_to_file_8(self):
+        Square.save_to_file_csv([])
+        with open("Square.csv", "r") as f:
+            f.readline()
+            self.assertEqual('', f.read())
+
+    def test_to_file_9(self):
+        with self.assertRaises(TypeError):
+            Rectangle.save_to_file_csv()
+
+    def test_to_file_10(self):
+        with self.assertRaises(TypeError):
+            Square.save_to_file_csv([], 1)
+
+class Test_load_from_file_csv(unittest.TestCase):
+    """unittests for the function load_from_file_csv of Base class"""
+    @classmethod
+    def tearDown(self):
+        """Delete any created files"""
+        try:
+            os.remove("Rectangle.csv")
+        except IOError:
+            pass
+        try:
+            os.remove("Square.csv")
+        except IOError:
+            pass
+
+    def test_load_1(self):
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        r2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file_csv([r1, r2])
+        output = Rectangle.load_from_file_csv()
+        self.assertEqual(str(r1), str(output[0]))
+        self.assertEqual(str(r2), str(output[1]))
+
+    def test_load_2(self):
+        r1 = Rectangle(10, 7, 2, 8, 5)
+        r2 = Rectangle(2, 4, 1, 2, 3)
+        Rectangle.save_to_file_csv([r1, r2])
+        output = Rectangle.load_from_file_csv()
+        self.assertTrue(all(isinstance(item, Rectangle) for item in output))
+
+    def test_load_3(self):
+        s1 = Square(10, 7, 2, 8)
+        s2 = Square(8, 1, 2, 3)
+        Square.save_to_file_csv([s1, s2])
+        output = Square.load_from_file_csv()
+        self.assertEqual(str(s1), str(output[0]))
+        self.assertEqual(str(s2), str(output[1]))
+
+    def test_load_4(self):
+        s1 = Square(10, 7, 2, 8)
+        s2 = Square(8, 1, 2, 3)
+        Square.save_to_file_csv([s1, s2])
+        output = Square.load_from_file_csv()
+        self.assertTrue(all(isinstance(item, Square) for item in output))
+
+    def test_load_5(self):
+        s = Square(9, 2, 39, 2)
+        output = Square.load_from_file_csv()
+        self.assertListEqual([], output)
+
+    def test_load_6(self):
+        with self.assertRaises(TypeError):
+            Square.load_from_file_csv(1)
+
+
 if __name__ == '__main__':
     unittest.main()
