@@ -6,6 +6,7 @@ import json
 import os
 import csv
 
+
 class Base:
     """This class will be the base of all other classes.
 
@@ -87,7 +88,7 @@ class Base:
                 saved.append(obj.to_dictionary())
         filename = "{}.csv".format(cls.__name__)
         fieldnames = names_square if cls.__name__ == "Square" else \
-                names_rectangle
+            names_rectangle
         with open(filename, "w", newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
