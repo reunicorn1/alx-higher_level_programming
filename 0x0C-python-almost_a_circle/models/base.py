@@ -5,7 +5,7 @@ This module is 'models.base' supplying one class ''Base''
 import json
 import os
 import csv
-
+import turtle
 
 class Base:
     """This class will be the base of all other classes.
@@ -54,6 +54,32 @@ class Base:
         if not json_string:
             return []
         return json.loads(json_string)
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """This method opens a window and draws all the rectangles
+        and squares.
+        """
+        c = turtle.Turtle()
+        c.shape("turtle")
+        c.speed(15)
+        c.getscreen().bgcolor("white")
+        for r in list_rectangles:
+            c.up()
+            c.goto(r.x, r.y)
+            c.down()
+            for i in range(2):
+                c.forward(r.width)
+                c.right(90)
+                c.forward(r.height)
+                c.right(90)
+        for s in list_squares:
+            c.up()
+            c.goto(s.x, s.y)
+            c.down()
+            for j in range(4):
+                c.forward(s.size)
+                c.left(90)
 
     @classmethod
     def save_to_file(cls, list_objs):
