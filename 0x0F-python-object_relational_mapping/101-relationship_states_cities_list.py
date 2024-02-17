@@ -21,4 +21,4 @@ if __name__ == "__main__":
     for row in rows:
         print("{}: {}".format(row.id, row.name))
         for city in row.cities:
-            print("\t {}: {}".format(city.id, city.name))
+            print("    {}: {}".format(city.id, city.name))
