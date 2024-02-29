@@ -3,5 +3,5 @@
 response=$(curl -sI -L "$1" | awk '/HTTP/{print $2}' | grep 200)
 if [ "$response" == "200" ]
 then
-        curl -L "$1"
+        curl -sL "$1"
 fi
