@@ -12,9 +12,9 @@ if __name__ == "__main__":
         data['q'] = sys.argv[1]
     r = requests.post('http://0.0.0.0:5000/search_user', data=data)
     try:
-        print("{} {}".format(r.json()['id'], r.json()['name']))
-    except requests.exceptions.JSONDecodeError as e:
-        if e == 'Expecting value: line 1 column 1 (char 0)':
-            print('No result')
+        if not r.json():
+            print("No result")
         else:
-            print('Not a valid JSON')
+            print("[{}] {}".format(r.json()['id'], r.json()['name']))
+    except Exception as e:
+        print("Not a valid JSON ")
