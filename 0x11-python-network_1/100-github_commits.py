@@ -8,7 +8,9 @@ import sys
 
 if __name__ == "__main__":
     head = {'Accept': 'application/vnd.github+json'}
-    url = 'https://api.github.com/repos/{}/{}/commits'.format(sys.argv[2], sys.argv[1])
+    repo = sys.argv[1]
+    owner = sys.argv[2]
+    url = 'https://api.github.com/repos/{}/{}/commits'.format(owner, repo)
     r = requests.get(url, headers=head)
     for data in r.json():
-        print("{} {}".format(data['sha'], data['commit']['committer']['name']))
+        print("{} {}".format(data['sha'], data['commit']['author']['name']))
