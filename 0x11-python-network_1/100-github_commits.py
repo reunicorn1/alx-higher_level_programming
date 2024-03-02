@@ -12,5 +12,5 @@ if __name__ == "__main__":
     owner = sys.argv[2]
     url = 'https://api.github.com/repos/{}/{}/commits'.format(owner, repo)
     r = requests.get(url, headers=head)
-    for data in r.json():
+    for data in r.json()[:10]:
         print("{}: {}".format(data['sha'], data['commit']['author']['name']))
