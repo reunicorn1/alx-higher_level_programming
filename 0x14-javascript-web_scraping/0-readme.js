@@ -1,4 +1,4 @@
-#!/usr/local/bin/node
+#!/usr/bin/node
 
 /* The required modules have been established here */
 const fs = require('fs');
