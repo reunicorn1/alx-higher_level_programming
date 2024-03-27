@@ -1,7 +1,7 @@
-#!/usr/local/bin/node
+#!/usr/bin/node
 
 /* The required modules have been established here */
-const request = require('../../../../../usr/local/Cellar/node/21.7.1/lib/node_modules/request');
+const request = require('request');
 
 request.get(`https://swapi-api.alx-tools.com/api/films/${process.argv[2]}`, (err, response, body) => {
   if (err) throw err;
